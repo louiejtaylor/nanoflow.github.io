@@ -12,15 +12,23 @@ First, create your `project_dir`:
   ```
 Second, we downloaed the long and short reads for sample INFO59 from [Ryan Wick's paper](https://www.ncbi.nlm.nih.gov/pubmed/29177090), which sequenced 12 Klebsiella pneumoniae on a single flow cell. We used [louiejtaylor](https://github.com/louiejtaylor)'s [grabseqs](https://github.com/louiejtaylor/grabseqs) to grab the sequencing data from SRA under theBioSample number SAMEA3357043.
   ```bash
-  grabseqs sra -t 8 SAMEA3357043 -o ~/nanoflow_tutorial/data_files
+  grabseqs sra -t 8 SAMEA3357043 -o ~/nanoflow_tutorial/01_basecalled_reads
   ```
 
 ### Basecalling
 
+Albacore is the data processig pipeline that provides the [Oxford Nanopore basecalling algorithms](https://nanoporetech.com/analyse), and several post-processing steps. In addition to Basecalling, Albacore also provided Barcoding/Demultiplexing. 
+  ```bash
+  read_fast5_basecaller.py --flowcell FLO-MIN106 --kit SQK-RBK001 --barcoding \
+                           --output_format fast5,fastq --worker_threads 8 \
+                           --recursive --input $raw_fast5_fp --save_path $basecalled_fast5_fp
+  ```
+
 ### Quality Control
 
-### Assembly
 
+### Assembly
+    
 ### Polishing
 
 ### Genome annotation
