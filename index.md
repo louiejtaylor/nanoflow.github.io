@@ -15,6 +15,11 @@ Second, we downloaed the long and short reads for sample INFO59 from [Ryan Wick'
   grabseqs sra -t 8 SAMEA3357043 -o ~/nanoflow_tutorial/01_basecalled_reads
   ```
 
+There are three files in the `01_basecalled_reads` files:
+- SRR5665596.fastq.gz: the Nanopore reads
+- ERR1023792_1.fastq.gz: the Illumina forward reads
+- ERR1023792_2.fastq.gz: the Illumina reverse reads
+
 ### Basecalling
 
 Albacore is the data processig pipeline that provides the [Oxford Nanopore basecalling algorithms](https://nanoporetech.com/analyse), and several post-processing steps. In addition to Basecalling, Albacore also provided Barcoding/Demultiplexing. 
@@ -23,6 +28,9 @@ Albacore is the data processig pipeline that provides the [Oxford Nanopore basec
                            --output_format fast5,fastq --worker_threads 8 \
                            --recursive --input $raw_fast5_fp --save_path $basecalled_fast5_fp
   ```
+
+We are 
+For the actual nanopore fast5 signal data, 
 
 ### Quality Control
 
