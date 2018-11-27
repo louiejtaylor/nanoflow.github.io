@@ -2,7 +2,7 @@
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Data set
+### Dataset
 
 First, create your `project_dir`:
   ```bash
@@ -76,12 +76,31 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 
 - `07_pilon`/{barcode}/pilon.fasta
 
-**assess_**
+### Assessment
+
+We evaluated the accuracy of the raw long reads and the assembled draft genomes, using the reads alignment to the reference genome specified in the *config.yml*, in rule `assess_reads`, `assess_canu`, `assess_nanopolish` and `assess_pilon`.
+
+Read accuracy is interesting to better understand the nanopore sequencing error, and assembly accuracy is more interesting to show whether the read errors can **average out** with high sequencing depth.
+
+The generated tsv files were parsed in the **bioinfo_report.Rmd**.
+
+- `/reports/01_basecalled_reads`/{barcode}/reads.aln.tsv'
+- `/reports/04_canu`/{barcode}/asm.aln.tsv'
+- `/reports/05_nanopolish`/{barcode}/asm.aln.tsv'
+- `/reports/07_pilon`/{barcode}/asm.aln.tsv'
 
 
-We can virsualize the assembly graph (.gfa) using [Bandage](https://github.com/rrwick/Bandage).
+
+To be specific, the definition of `identity` is same with `Blast`: the number of matches in the alignment divided by alignment length (including gaps).
+
+note: If less than 50% of a read aligned, it is assigned as **unaligned** and given an identity of 0%. 
+
+
+## Hybrid assembly
+
+We can visualize the assembly graph (.gfa) using [Bandage](https://github.com/rrwick/Bandage).
     
-### Polishing
+
 
 ### Annotation
 We used [Prokka](https://github.com/tseemann/prokka) to annotate the genome.
