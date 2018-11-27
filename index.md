@@ -76,26 +76,28 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 
 - `07_pilon`/{barcode}/pilon.fasta
 
+**assess_**
+
+
+We can virsualize the assembly graph (.gfa) using [Bandage](https://github.com/rrwick/Bandage).
     
 ### Polishing
 
-### Genome annotation
+### Annotation
+We used [Prokka](https://github.com/tseemann/prokka) to annotate the genome.
 
-### Markdown
+### Summary
+
+In this tutorial, we used bacterial sequencing data from long and short reads to produce a polished complete genome. 
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
-
-
+- Further research:
+ - core and pangenome analysis: https://github.com/zhaoc1/coreSNPs
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/zhaoc1/nanoflow.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
 ### Support or Contact
 
 Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
