@@ -60,11 +60,12 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
   
 **[Nanopolish](http://nanopolish.readthedocs.io/en/latest/installation.html#installing-a-particular-release)** was used to polish the assembled consensus sequences using the raw FAST5 signal data. This includes four steps: 
 
+- `05_nanopolish`/{barcode}/nanopolish.contigs.fasta
+
   1. rule `collect_sequencing_summary`: prepare sequencing summary for fast *nanopolish index* fast5 files.
   2. rule `nanopolish_index`: *nanopolish index* the QualityControledLongReads.
   3. rule  `minimap2_align_nanopolish`: map the QualityControledLongReads to the assembled contigs from Canu using [minimap2](https://github.com/lh3/minimap2).
   4. rule `nanopolish_consensus`: polish the draft genome.
- - `05_nanopolish`/{barcode}/nanopolish.contigs.fasta
  
  
 **[Circlator](https://github.com/sanger-pathogens/circlator/wiki/Brief-instructions)** was used to trim overhangs and circularize the assembled contigs (for both chromosomes and plasmids) in rule `run_circlator`.
@@ -72,6 +73,8 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 
 
 **[Pilon](https://github.com/broadinstitute/pilon/wiki)** was used to polish the draft genomes using Illumina short reads. Pilon aligns short reads to draft assemblies to identify inconsistencies between the short reads and the input genome.
+
+- `07_pilon`/{barcode}/pilon.fasta
 
     
 ### Polishing
