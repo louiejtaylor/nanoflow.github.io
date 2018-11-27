@@ -49,7 +49,7 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 
 **asm_long.rules** includes the steps for nanopore long reads only assembly and draft genome assessment.
 
-[Canu](http://canu.readthedocs.io/en/latest/quick-start.html) was used to assemble the quality controlled long reads in rule `canu_asm`.
+1. [Canu](http://canu.readthedocs.io/en/latest/quick-start.html) was used to assemble the quality controlled long reads in rule `canu_asm`.
 
 **Check assembly output**: there are two output files what will be used in many downstreams steps:
 
@@ -58,14 +58,20 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
   - Canu corrects the long reads by using the overlap between reads. That being said, if you are intersted in any long reads level mapping or antibiotics resistance gene finding, use this **correctedReads** instead of the rawLongReads from the preivous QC step.
   
   
-[Nanopolish](http://nanopolish.readthedocs.io/en/latest/installation.html#installing-a-particular-release) was used to polish the assembled consensus sequences using the raw FAST5 signal data. This includes four steps: 
+2. [Nanopolish](http://nanopolish.readthedocs.io/en/latest/installation.html#installing-a-particular-release) was used to polish the assembled consensus sequences using the raw FAST5 signal data. This includes four steps: 
 
   1. rule `collect_sequencing_summary`: prepare sequencing summary for fast *nanopolish index* fast5 files.
   2. rule `nanopolish_index`: *nanopolish index* the QualityControledLongReads.
   3. rule  `minimap2_align_nanopolish`: map the QualityControledLongReads to the assembled contigs from Canu using [minimap2](https://github.com/lh3/minimap2).
   4. rule `nanopolish_consensus`: polish the draft genome.
+ - `05_nanopolish`/{barcode}/nanopolish.contigs.fasta
  
+ 
+3. [Circlator](https://github.com/sanger-pathogens/circlator/wiki/Brief-instructions) was used to trim overhangs and circularize the assembled contigs (for both chromosomes and plasmids) in rule `run_circlator`.
+-  `06_circlator`/{barcode}/06.fixstart.fasta
 
+
+4. [Pilon](https://github.com/broadinstitute/pilon/wiki) was used to polish the draft genomes using Illumina short reads
 
     
 ### Polishing
@@ -79,18 +85,7 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 ```markdown
 Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-[Link](url) and ![Image](src)
-```
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
