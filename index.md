@@ -71,7 +71,7 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 -  `06_circlator`/{barcode}/06.fixstart.fasta
 
 
-**[Pilon](https://github.com/broadinstitute/pilon/wiki)** was used to polish the draft genomes using Illumina short reads
+**[Pilon](https://github.com/broadinstitute/pilon/wiki)** was used to polish the draft genomes using Illumina short reads. Pilon aligns short reads to draft assemblies to identify inconsistencies between the short reads and the input genome.
 
     
 ### Polishing
