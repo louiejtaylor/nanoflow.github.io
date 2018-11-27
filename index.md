@@ -1,7 +1,5 @@
 ## Nanopore Sequencing Analysis Tutorial
 
-You can use the [editor on GitHub](https://github.com/zhaoc1/nanoflow.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
-
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
 ### Data set
@@ -29,11 +27,25 @@ Albacore is the data processig pipeline that provides the [Oxford Nanopore basec
                            --recursive --input $raw_fast5_fp --save_path $basecalled_fast5_fp
   ```
 
-We are 
-For the actual nanopore fast5 signal data, 
+After the basecalling, rule `collect_raw_fastq` gathers basecalled fastq files for each barcode, and rule `asm_stats_raw` reports the standard assembly quatlify metric for the raw long reads, include total number of reads, N50, largest read length, and etc.
+
+- `01_basecalled_reads`/{barcode}/reads.fastq
 
 ### Quality Control
 
+On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porechop](https://github.com/rrwick/Porechop), to remove adapter sequences and generate the confidently-binned long reads. 
+- `02_trimmed_reads`/{barcode}/reads.fastq
+
+
+[Filtlong](https://github.com/rrwick/Filtlong) was then used in rule `subsample_reads` to remove reads short than 1 kbp and subsample the reads to 500 Mbps or keep the best 90% of the reads.
+
+The quality control steps include adapter sequence removal, chimera detection,  and subsamples long reads, and use reference genomes to estimate the long reads accuracy.
+
+-  `03_subsampled_reads`/{barcode}/reads.fastq.gz
+
+  ```bash
+  snakemake --configfile config.yml _all_qc
+  ```
 
 ### Assembly
     
