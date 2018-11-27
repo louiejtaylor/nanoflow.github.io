@@ -8,7 +8,7 @@ First, create your `project_dir`:
   ```bash
   mkdir ~/nanoflow_tutorial
   ```
-Second, we downloaed the long and short reads for sample INFO59 from [Ryan Wick's paper](https://www.ncbi.nlm.nih.gov/pubmed/29177090), which sequenced 12 Klebsiella pneumoniae on a single flow cell. We used [louiejtaylor](https://github.com/louiejtaylor)'s [grabseqs](https://github.com/louiejtaylor/grabseqs) to grab the sequencing data from SRA under theBioSample number SAMEA3357043.
+Second, we downloaded the long and short reads for sample INFO59 from [Ryan Wick's paper](https://www.ncbi.nlm.nih.gov/pubmed/29177090), which sequenced 12 Klebsiella pneumoniae on a single flow cell. We used [louiejtaylor](https://github.com/louiejtaylor)'s [grabseqs](https://github.com/louiejtaylor/grabseqs) to grab the sequencing data from SRA under theBioSample number SAMEA3357043.
   ```bash
   grabseqs sra -t 8 SAMEA3357043 -o ~/nanoflow_tutorial/01_basecalled_reads
   ```
@@ -39,15 +39,22 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 
 [Filtlong](https://github.com/rrwick/Filtlong) was then used in rule `subsample_reads` to remove reads short than 1 kbp and subsample the reads to 500 Mbps or keep the best 90% of the reads.
 
-The quality control steps include adapter sequence removal, chimera detection,  and subsamples long reads, and use reference genomes to estimate the long reads accuracy.
-
 -  `03_subsampled_reads`/{barcode}/reads.fastq.gz
 
   ```bash
   snakemake --configfile config.yml _all_qc
   ```
 
-### Assembly
+### Assembly - long reads only
+
+**asm_long.rules** includes the steps for nanopore long reads only assembly and draft genome assessment.
+
+[Canu](http://canu.readthedocs.io/en/latest/quick-start.html) was used to assemble the quality controlled long reads in rule `canu_asm`, and there are two output files what will be used in many downstreams steps:
+
+- `04_canu`/{barcode}/canu.contigs.fasta <- contigs assembled from long reads only
+- `04_canu`/{barcode}/canu.correctedReads.fasta.gz 
+  - Canu corrects the long reads by using the overlap between reads. That being said, if you are intersted in any long reads level mapping or antibiotics resistance gene finding, use this **correctedReads** instead of the rawLongReads from the preivous QC step.
+
     
 ### Polishing
 
@@ -69,8 +76,6 @@ Syntax highlighted code block
 
 1. Numbered
 2. List
-
-**Bold** and _Italic_ and `Code` text
 
 [Link](url) and ![Image](src)
 ```
