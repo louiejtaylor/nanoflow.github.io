@@ -49,7 +49,7 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 
 **asm_long.rules** includes the steps for nanopore long reads only assembly and draft genome assessment.
 
-1. [Canu](http://canu.readthedocs.io/en/latest/quick-start.html) was used to assemble the quality controlled long reads in rule `canu_asm`.
+**[Canu](http://canu.readthedocs.io/en/latest/quick-start.html)** was used to assemble the quality controlled long reads in rule `canu_asm`.
 
 **Check assembly output**: there are two output files what will be used in many downstreams steps:
 
@@ -58,7 +58,7 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
   - Canu corrects the long reads by using the overlap between reads. That being said, if you are intersted in any long reads level mapping or antibiotics resistance gene finding, use this **correctedReads** instead of the rawLongReads from the preivous QC step.
   
   
-2. [Nanopolish](http://nanopolish.readthedocs.io/en/latest/installation.html#installing-a-particular-release) was used to polish the assembled consensus sequences using the raw FAST5 signal data. This includes four steps: 
+**[Nanopolish](http://nanopolish.readthedocs.io/en/latest/installation.html#installing-a-particular-release)** was used to polish the assembled consensus sequences using the raw FAST5 signal data. This includes four steps: 
 
   1. rule `collect_sequencing_summary`: prepare sequencing summary for fast *nanopolish index* fast5 files.
   2. rule `nanopolish_index`: *nanopolish index* the QualityControledLongReads.
@@ -67,11 +67,11 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
  - `05_nanopolish`/{barcode}/nanopolish.contigs.fasta
  
  
-3. [Circlator](https://github.com/sanger-pathogens/circlator/wiki/Brief-instructions) was used to trim overhangs and circularize the assembled contigs (for both chromosomes and plasmids) in rule `run_circlator`.
+**[Circlator](https://github.com/sanger-pathogens/circlator/wiki/Brief-instructions)** was used to trim overhangs and circularize the assembled contigs (for both chromosomes and plasmids) in rule `run_circlator`.
 -  `06_circlator`/{barcode}/06.fixstart.fasta
 
 
-4. [Pilon](https://github.com/broadinstitute/pilon/wiki) was used to polish the draft genomes using Illumina short reads
+**[Pilon](https://github.com/broadinstitute/pilon/wiki)** was used to polish the draft genomes using Illumina short reads
 
     
 ### Polishing
