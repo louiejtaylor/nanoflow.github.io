@@ -76,7 +76,20 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 
 - `07_pilon`/{barcode}/pilon.fasta
 
-### Assessment
+
+```bash
+snakemake --configfile config.yaml --cores 8 _all_draft1
+```
+
+
+## Assembly - Hybrid
+
+The hybrid assemblies were generated using [Unicycler](https://github.com/rrwick/Unicycler) pipeline, with the *--existing_long_read_assembly* option. Unicycler first assembles the short reads using SPAdes, then scaffolds the assembly graph using either provided or generated long reads assemblies, and finish up with multiple rounds of polishing the final 
+
+We can visualize the assembly graph (.gfa) using [Bandage](https://github.com/rrwick/Bandage).
+   
+   
+## Assessment
 
 We evaluated the accuracy of the raw long reads and the assembled draft genomes, using the reads alignment to the reference genome specified in the *config.yml*, in rule `assess_reads`, `assess_canu`, `assess_nanopolish` and `assess_pilon`.
 
@@ -84,21 +97,14 @@ Read accuracy is interesting to better understand the nanopore sequencing error,
 
 The generated tsv files were parsed in the **bioinfo_report.Rmd**, with an example [bioinfo_report.pdf](https://github.com/zhaoc1/nanoflow/blob/master/bioinfo_report.pdf). 
 
-- `/reports/01_basecalled_reads`/{barcode}/reads.aln.tsv'
-- `/reports/04_canu`/{barcode}/asm.aln.tsv'
-- `/reports/05_nanopolish`/{barcode}/asm.aln.tsv'
-- `/reports/07_pilon`/{barcode}/asm.aln.tsv'
-
-  ```bash
-  snakemake --configfile config.yaml --cores 8 _all_draft1
-  ```
-
-## Assembly - Hybrid
+- `/reports/01_basecalled_reads`/{barcode}/reads.aln.tsv
+- `/reports/04_canu`/{barcode}/asm.aln.tsv
+- `/reports/05_nanopolish`/{barcode}/asm.aln.tsv
+- `/reports/07_pilon`/{barcode}/asm.aln.tsv
+- `/reports/08_unicycler`/{barcode}/asm.aln.tsv
+- `/reports/09_unicycler_long`/{barcode}/asm.aln.tsv
 
 
-
-We can visualize the assembly graph (.gfa) using [Bandage](https://github.com/rrwick/Bandage).
-    
 
 
 ### Annotation
