@@ -89,8 +89,13 @@ The generated tsv files were parsed in the **bioinfo_report.Rmd**, with an examp
 - `/reports/05_nanopolish`/{barcode}/asm.aln.tsv'
 - `/reports/07_pilon`/{barcode}/asm.aln.tsv'
 
+  ```bash
+  snakemake --configfile config.yaml --cores 8 _all_draft1
+  ```
 
-## Hybrid assembly
+## Assembly - Hybrid
+
+
 
 We can visualize the assembly graph (.gfa) using [Bandage](https://github.com/rrwick/Bandage).
     
