@@ -1,6 +1,6 @@
 ## Nanopore Sequencing Analysis Tutorial
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+In this tutorial, we used bacterial sequencing data from long and short reads to produce a polished complete genome. 
 
 ### Dataset
 
@@ -117,10 +117,6 @@ We used [Prokka](https://github.com/tseemann/prokka) to annotate the genome.
 - rgi
 Further research:
 - core and pangenome analysis: https://github.com/zhaoc1/coreSNPs
-
-### Summary
-
-In this tutorial, we used bacterial sequencing data from long and short reads to produce a polished complete genome. 
 
 
 ### Support or Contact
