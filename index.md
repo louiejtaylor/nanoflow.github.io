@@ -45,7 +45,7 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
   snakemake --configfile config.yml _all_qc
   ```
 
-### Assembly - long reads only
+### Assembly - long reads only/first
 
 **asm_long.rules** includes the steps for nanopore long reads only assembly and draft genome assessment.
 
@@ -76,17 +76,24 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 
 - `07_pilon`/{barcode}/pilon.fasta
 
-
 ```bash
 snakemake --configfile config.yaml --cores 8 _all_draft1
 ```
 
 
-## Assembly - Hybrid
+## Assembly - short reads first
 
-The hybrid assemblies were generated using [Unicycler](https://github.com/rrwick/Unicycler) pipeline, with the *--existing_long_read_assembly* option. Unicycler first assembles the short reads using SPAdes, then scaffolds the assembly graph using either provided or generated long reads assemblies, and finish up with multiple rounds of polishing the final 
+The hybrid assemblies were generated using [Unicycler](https://github.com/rrwick/Unicycler) pipeline, with the *--existing_long_read_assembly* option. Unicycler first assembles the short reads using SPAdes, then scaffolds the assembly graph using either provided or generated long reads assemblies, and finish up with multiple rounds of polishing the draft genomes, to reduce the small base-level errors. For each intermediate steps, we can visualize the assembly graph (.gfa) using [Bandage](https://github.com/rrwick/Bandage).
 
-We can visualize the assembly graph (.gfa) using [Bandage](https://github.com/rrwick/Bandage).
+
+We illustrated the problem of interrupted genes in this [slide](https://github.com/zhaoc1/nanoflow/blob/master/demo_interruptted_genes.pdf) for long reads first assemblies, and therefore recommended the short reads first assemblies for the Hybrid assebmlies.
+
+- `/09_unicycler_long`/{barcode}/assembly.fasta
+
+```bash
+snakemake --configfile config.yaml --cores 8 _all_draft3
+```
+
    
    
 ## Assessment
@@ -105,23 +112,24 @@ The generated tsv files were parsed in the **bioinfo_report.Rmd**, with an examp
 - `/reports/09_unicycler_long`/{barcode}/asm.aln.tsv
 
 
-
-
-### Annotation
+### Genome Annotation
 We used [Prokka](https://github.com/tseemann/prokka) to annotate the genome.
+- rgi
+Further research:
+- core and pangenome analysis: https://github.com/zhaoc1/coreSNPs
 
 ### Summary
 
 In this tutorial, we used bacterial sequencing data from long and short reads to produce a polished complete genome. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-- Further research:
- - core and pangenome analysis: https://github.com/zhaoc1/coreSNPs
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 ### Support or Contact
+
+Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+
+
+
+For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
 
