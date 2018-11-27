@@ -49,11 +49,23 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 
 **asm_long.rules** includes the steps for nanopore long reads only assembly and draft genome assessment.
 
-[Canu](http://canu.readthedocs.io/en/latest/quick-start.html) was used to assemble the quality controlled long reads in rule `canu_asm`, and there are two output files what will be used in many downstreams steps:
+[Canu](http://canu.readthedocs.io/en/latest/quick-start.html) was used to assemble the quality controlled long reads in rule `canu_asm`.
 
-- `04_canu`/{barcode}/canu.contigs.fasta <- contigs assembled from long reads only
-- `04_canu`/{barcode}/canu.correctedReads.fasta.gz 
+**Check assembly output**: there are two output files what will be used in many downstreams steps:
+
+- `04_canu`/{barcode}/canu.contigs.fasta <- the assembled contigs.
+- `04_canu`/{barcode}/canu.correctedReads.fasta.gz: the corrected Nanopore reads that were used in the assembly.
   - Canu corrects the long reads by using the overlap between reads. That being said, if you are intersted in any long reads level mapping or antibiotics resistance gene finding, use this **correctedReads** instead of the rawLongReads from the preivous QC step.
+  
+  
+[Nanopolish](http://nanopolish.readthedocs.io/en/latest/installation.html#installing-a-particular-release) was used to polish the assembled consensus sequences using the raw FAST5 signal data. This includes four steps: 
+
+  1. rule `collect_sequencing_summary`: prepare sequencing summary for fast *nanopolish index* fast5 files.
+  2. rule `nanopolish_index`: *nanopolish index* the QualityControledLongReads.
+  3. rule  `minimap2_align_nanopolish`: map the QualityControledLongReads to the assembled contigs from Canu using [minimap2](https://github.com/lh3/minimap2).
+  4. rule `nanopolish_consensus`: polish the draft genome.
+ 
+
 
     
 ### Polishing
