@@ -18,6 +18,12 @@ There are three files in the `01_basecalled_reads` files:
 - ERR1023792_1.fastq.gz: the Illumina forward reads
 - ERR1023792_2.fastq.gz: the Illumina reverse reads
 
+Third, for the purpose of estimating the sequencing accuracy, download the genome and gene annotation files for [klebsiella pneumoniae](https://www.ncbi.nlm.nih.gov/genome/?term=Klebsiella%20pneumoniae) and place them into your `project_dir`.
+  ```bash
+  
+
+ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/240/185/GCF_000240185.1_ASM24018v2/GCF_000240185.1_ASM24018v2_genomic.fna.gz
+
 ### Basecalling
 
 Albacore is the data processig pipeline that provides the [Oxford Nanopore basecalling algorithms](https://nanoporetech.com/analyse), and several post-processing steps. In addition to Basecalling, Albacore also provided Barcoding/Demultiplexing. 
