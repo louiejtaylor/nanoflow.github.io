@@ -10,6 +10,8 @@ First, create your `project_dir`:
   ```
 Second, we downloaded the long and short reads for sample INFO59 from [Ryan Wick's paper](https://www.ncbi.nlm.nih.gov/pubmed/29177090), which sequenced 12 Klebsiella pneumoniae on a single flow cell. We used [louiejtaylor](https://github.com/louiejtaylor)'s [grabseqs](https://github.com/louiejtaylor/grabseqs) to grab the sequencing data from SRA under theBioSample number SAMEA3357043.
   ```bash
+  conda install -c louiejtaylor -c bioconda grabseqs
+  
   grabseqs sra -t 8 SAMEA3357043 -o ~/nanoflow_tutorial/01_basecalled_reads
   ```
 
