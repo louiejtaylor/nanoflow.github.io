@@ -18,10 +18,11 @@ There are three files in the `01_basecalled_reads` files:
 - ERR1023792_1.fastq.gz: the Illumina forward reads
 - ERR1023792_2.fastq.gz: the Illumina reverse reads
 
-Let's get the sequencing data in the desired format.
+Third, let's get the sequencing data in the desired format.
 
   ```bash
   cd ~/nanoflow_tutorial
+  
   mkdir short_reads
   mkdir short_reads/barcode02
   mv ~/nanoflow_tutorial/01_basecalled_reads/ERR* short_reads/barcode02
@@ -31,7 +32,7 @@ Let's get the sequencing data in the desired format.
   ```
   
 
-Third, for the purpose of estimating the sequencing accuracy, download the genome and gene annotation files for [klebsiella pneumoniae](https://www.ncbi.nlm.nih.gov/genome/?term=Klebsiella%20pneumoniae) and place them into your `project_dir`.
+Fourth, for the purpose of estimating the sequencing accuracy, download the genome and gene annotation files for [klebsiella pneumoniae](https://www.ncbi.nlm.nih.gov/genome/?term=Klebsiella%20pneumoniae) and place them into your `project_dir`.
   ```bash
   cd ~/nanoflow_tutorial
   wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/417/085/GCF_000417085.2_ASM41708v2/GCF_000417085.2_ASM41708v2_genomic.fna.gz
