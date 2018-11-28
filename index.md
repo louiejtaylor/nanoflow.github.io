@@ -18,11 +18,28 @@ There are three files in the `01_basecalled_reads` files:
 - ERR1023792_1.fastq.gz: the Illumina forward reads
 - ERR1023792_2.fastq.gz: the Illumina reverse reads
 
-Third, for the purpose of estimating the sequencing accuracy, download the genome and gene annotation files for [klebsiella pneumoniae](https://www.ncbi.nlm.nih.gov/genome/?term=Klebsiella%20pneumoniae) and place them into your `project_dir`.
   ```bash
+  cd ~/nanoflow_tutorial
+  mkdir short_reads
+  mkdir short_reads/barcode02
+  mv ~/nanoflow_tutorial/01_basecalled_reads/ERR* short_reads/barcode02
+  
+  mkdir 01_basecalled_reads/barcode02
+  mv ~/nanoflow_tutorial/01_basecalled_reads/SRR* 01_basecalled_reads/barcode02
+  ```
   
 
-ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/240/185/GCF_000240185.1_ASM24018v2/GCF_000240185.1_ASM24018v2_genomic.fna.gz
+Third, for the purpose of estimating the sequencing accuracy, download the genome and gene annotation files for [klebsiella pneumoniae](https://www.ncbi.nlm.nih.gov/genome/?term=Klebsiella%20pneumoniae) and place them into your `project_dir`.
+  ```bash
+  cd ~/nanoflow_tutorial
+  wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/417/085/GCF_000417085.2_ASM41708v2/GCF_000417085.2_ASM41708v2_genomic.fna.gz
+  wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/417/085/GCF_000417085.2_ASM41708v2/GCF_000417085.2_ASM41708v2_genomic.gff.gz
+  gunzip *.gz
+  
+  mv GCF_000417085.2_ASM41708v2_genomic.fna GCF_000417085.fna
+  mv GCF_000417085.2_ASM41708v2_genomic.gff GCF_000417085.gff
+  ```
+  
 
 ### Basecalling
 
