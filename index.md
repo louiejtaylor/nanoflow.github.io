@@ -24,7 +24,6 @@ Third, let's get the sequencing data in the desired format.
 
   ```bash
   cd ~/nanoflow_tutorial
-  gunzip 01_basecalled_reads/*.gz
   
   mkdir short_reads
   mkdir short_reads/barcode02
