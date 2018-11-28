@@ -27,10 +27,11 @@ Third, let's get the sequencing data in the desired format.
   
   mkdir short_reads
   mkdir short_reads/barcode02
-  mv ~/nanoflow_tutorial/01_basecalled_reads/ERR* short_reads/barcode02
+  mv ~/nanoflow_tutorial/01_basecalled_reads/ERR1023792_1.fastq.gz short_reads/barcode02/R1.fastq.gz
+  mv ~/nanoflow_tutorial/01_basecalled_reads/ERR1023792_2.fastq.gz short_reads/barcode02/R2.fastq.gz
   
   mkdir 01_basecalled_reads/barcode02
-  mv ~/nanoflow_tutorial/01_basecalled_reads/SRR* 01_basecalled_reads/barcode02
+  mv ~/nanoflow_tutorial/01_basecalled_reads/SRR5665596.fastq 01_basecalled_reads/barcode02/reads.fastq
   ```
   
 
