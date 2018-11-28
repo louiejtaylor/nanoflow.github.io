@@ -71,7 +71,7 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 -  `03_subsampled_reads`/{barcode}/reads.fastq.gz
 
   ```bash
-  snakemake --configfile ~/nanoflow_tutorial/config.yml _all_qc -p --cores 2
+  snakemake --configfile ~/nanoflow_tutorial/config.yml _all_qc -p --cores 8
   ```
 
 ### Assembly - long reads only/first
@@ -106,7 +106,7 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 - `07_pilon`/{barcode}/pilon.fasta
 
 ```bash
-snakemake --configfile config.yaml --cores 8 _all_draft1
+snakemake --configfile ~/nanoflow_tutorial/config.yml _all_draft1_nofast5 -p --cores 8
 ```
 
 
@@ -123,7 +123,6 @@ We illustrated the problem of interrupted genes in this [slide](https://github.c
 snakemake --configfile config.yaml --cores 8 _all_draft3
 ```
 
-   
    
 ## Assessment
 
@@ -147,14 +146,4 @@ We used [Prokka](https://github.com/tseemann/prokka) to annotate the genome.
 Further research:
 - core and pangenome analysis: https://github.com/zhaoc1/coreSNPs
 
-
-### Support or Contact
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
 
