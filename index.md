@@ -18,6 +18,8 @@ There are three files in the `01_basecalled_reads` files:
 - ERR1023792_1.fastq.gz: the Illumina forward reads
 - ERR1023792_2.fastq.gz: the Illumina reverse reads
 
+Let's get the sequencing data in the desired format.
+
   ```bash
   cd ~/nanoflow_tutorial
   mkdir short_reads
