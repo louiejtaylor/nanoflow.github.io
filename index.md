@@ -71,7 +71,7 @@ On top of the de-mutilplexed reads from Albacore, rule `trim_reads` used [porech
 -  `03_subsampled_reads`/{barcode}/reads.fastq.gz
 
   ```bash
-  snakemake --configfile config.yml _all_qc
+  snakemake --configfile ~/nanoflow_tutorial/config.yml _all_qc -p --cores 2
   ```
 
 ### Assembly - long reads only/first
